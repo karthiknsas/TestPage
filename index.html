@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+	<title>Developer Tools - Automation</title>
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+
+		/* Body styling */
+		body {
+			font-family: 'Roboto', sans-serif;
+			display: flex;
+			flex-direction: column;
+			height: 100vh;
+			background: #F0F4F8;
+			overflow-x: hidden;
+		}
+
+		/* Header Styling */
+		header {
+			background-color: #34495E;
+			color: #FFF;
+			padding: 20px;
+			text-align: center;
+			font-size: 30px;
+			box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+		}
+
+		/* Navigation Styling */
+		nav {
+			background-color: #1F2A40;
+			color: #FFF;
+			padding: 12px 0;
+			text-align: center;
+			box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+			position: relative;
+		}
+
+		nav ul {
+			list-style: none;
+			display: flex;
+			justify-content: center;
+			padding-left: 0;
+		}
+
+		nav ul li {
+			margin: 0 20px;
+			position: relative;
+		}
+
+		nav ul li a {
+			color: #FFF;
+			text-decoration: none;
+			font-weight: 500;
+			padding: 8px 16px;
+			border-radius: 4px;
+			transition: background-color 0.3s, transform 0.3s;
+			display: block;
+		}
+
+		nav ul li a:hover,
+		nav ul li a:focus {
+			background-color: #3498db;
+			transform: translateY(-2px); /* Small upward hover effect */
+			outline: none;
+		}
+
+		/* Dropdown menu styles */
+		nav ul li ul {
+			display: none;
+			position: absolute;
+			top: 100%;
+			left: 0;
+			background-color: #2C3E50;
+			min-width: 180px;
+			box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+			border-radius: 4px;
+			z-index: 10;
+		}
+
+		nav ul li:hover ul {
+			display: block;
+		}
+
+		nav ul li ul li {
+			padding: 10px;
+			text-align: left;
+		}
+
+		nav ul li ul li a {
+			color: #FFF;
+			padding: 8px 16px;
+			text-decoration: none;
+			font-weight: 400;
+			display: block;
+		}
+
+		nav ul li ul li a:hover,
+		nav ul li ul li a:focus {
+			background-color: #1ABC9C;
+		}
+
+		/* Main content container */
+		.main-container {
+			display: flex;
+			flex-grow: 1;
+			flex-shrink: 0;
+			overflow: hidden;
+			transition: all 0.3s ease-in-out;
+		}
+
+		/* Sidebar */
+		.sidebar {
+			width: 260px;
+			background-color: #2C3E50;
+			color: white;
+			position: relative;
+			transition: width 0.3s ease-in-out;
+			z-index: 1; /* Ensure the sidebar stays behind content */
+		}
+
+		.sidebar.collapsed {
+			width: 70px; /* Reduced width when collapsed */
+			z-index: 0; /* Sidebar behind the content when collapsed */
+		}
+
+		.sidebar ul {
+			list-style: none;
+			padding-left: 0;
+		}
+
+		.sidebar ul li {
+			margin: 15px 0;
+		}
+
+		.sidebar ul li a {
+			color: white;
+			text-decoration: none;
+			font-weight: 500;
+			display: block;
+			padding: 12px;
+			border-radius: 5px;
+			transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+		}
+
+		.sidebar ul li a:hover {
+			background-color: #1ABC9C;
+			transform: translateX(5px); /* Slightly push the link to the right */
+		}
+
+		.sidebar ul li .nested {
+			display: none;
+			padding-left: 20px;
+			margin-top: 10px;
+		}
+
+		.sidebar ul li.active .nested {
+			display: block;
+		}
+
+		/* Sidebar toggle button */
+		.sidebar .toggle-btn {
+			position: absolute;
+			top: 20px;
+			left: 250px; /* Adjusted position for the button */
+			background-color: #34495E;
+			color: white;
+			border: none;
+			padding: 10px;
+			cursor: pointer;
+			font-size: 18px;
+			border-radius: 50%;
+			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+			transition: left 0.3s ease;
+			z-index: 3; /* Make sure the toggle button is above all content */
+		}
+
+		.sidebar .toggle-btn:hover {
+			background-color: #3498db;
+		}
+
+		.sidebar .toggle-btn:focus {
+			outline: none;
+		}
+
+		/* Content */
+		.content {
+			flex-grow: 1;
+			padding: 20px;
+			overflow-y: auto;
+			background-color: #FFF;
+			box-shadow: inset 0 4px 15px rgba(0, 0, 0, 0.1);
+			border-radius: 8px;
+			transition: margin-left 0.3s ease-in-out;
+			z-index: 2; /* Ensure the content stays above the sidebar */
+		}
+
+		/* Adjust content padding when sidebar is collapsed */
+		.sidebar.collapsed + .content {
+			margin-left: 70px; /* Add left margin when sidebar is collapsed */
+		}
+
+		.content h2 {
+			color: #2C3E50;
+			margin-bottom: 20px;
+		}
+
+		.content p {
+			color: #7F8C8D;
+			font-size: 16px;
+			line-height: 1.6;
+		}
+
+		.log-container {
+			margin-top: 30px;
+			background-color: #2C3E50;
+			color: #FFF;
+			padding: 20px;
+			border-radius: 8px;
+			max-height: 200px;
+			overflow-y: auto;
+			box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+		}
+
+		.log-container pre {
+			white-space: pre-wrap;
+			word-wrap: break-word;
+			font-family: 'Courier New', Courier, monospace;
+			color: #ddd;
+			font-size: 14px;
+		}
+
+		/* Responsive design */
+		@media (max-width: 768px) {
+			.sidebar {
+				width: 220px;
+			}
+
+			.sidebar.collapsed {
+				width: 70px; /* Ensure it's not fully collapsed on smaller screens */
+			}
+
+			.main-container {
+				flex-direction: column;
+			}
+
+			.content {
+				padding: 15px;
+				margin-left: 0;
+			}
+
+			.sidebar .toggle-btn {
+				left: 180px; /* Button alignment */
+			}
+
+			nav ul {
+				flex-direction: column;
+			}
+
+			nav ul li {
+				margin: 10px 0;
+			}
+		}
+	</style>
+</head>
+<body>
+	<header>Riayati Developer Portal</header>
+		<nav>
+			<ul>
+				<li><a href="#">Dev</a>
+					<ul>
+						<li><a href="#">UCR01</a></li>
+						<li><a href="#">RIAVIE01</a></li>
+						<li><a href="#">Updates</a></li>
+					</ul>
+				</li>
+				<li><a href="#">Test</a>
+					<ul>
+						<li><a href="#">UCR01</a></li>
+						<li><a href="#">RIAVIE01</a></li>
+						<li><a href="#">Updates</a></li>
+					</ul>
+				</li>
+				<li><a href="#">Stage</a>
+					<ul>
+						<li><a href="#">UCR01</a></li>
+						<li><a href="#">RIAVIE01</a></li>
+						<li><a href="#">Updates</a></li>
+					</ul>
+				</li>
+				<li><a href="#">Prod</a>
+					<ul>
+						<li><a href="#">UCR01</a></li>
+						<li><a href="#">RIAVIE01</a></li>
+						<li><a href="#">Updates</a></li>
+					</ul>
+				</li>
+				<li><a href="#">Support</a></li>
+			</ul>
+		</nav>
+
+		<!-- Main Content Area -->
+		<div class="main-container">
+			<!-- Sidebar Section -->
+			<div class="sidebar" id="sidebar">
+				<ul>
+					<li>
+						<a href="#" class="sidebar-link">RIAUCR EDGE</a>
+						<ul class="nested">
+							<li><a href="#" data-section-html="file:///C:/nuthalapati.karthik/Desktop/RIAYATI/work/Automation/PRJ3/EIDIMPORTER.html" data-section="EID_Import">EID Import for Public SSO</a></li>
+							<li><a href="#" data-section-html="/csp/hscustom/PCS.Riayati.UI.Util.EIDImportHelper.cls" data-section="Create_HL7_Interface">Create HL7 Interface</a></li>
+							<li><a href="#" data-section-html="/csp/hscustom/PCS.Riayati.UI.Util.EIDImportHelper.cls" data-section="Create_EDGE_NameSpace">Create EDGE NameSpace</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="#" class="sidebar-link">RIAVIE - ACCESS Gateway</a>
+						<ul class="nested">
+							<li><a href="#" data-section="X.509Certificate_Upload">X.509 Certificate Upload</a></li>
+							<li><a href="#" data-section="Authentication">Authentication</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+
+			<!-- Content Section -->
+			<div class="content">
+				<div id="dynamic-content">
+					Add some developer related design here
+				</div>
+			</div>
+		</div>
+
+		<!-- Toggle Sidebar Visibility -->
+		<script>
+		const sidebar = document.getElementById('sidebar');
+		const content = document.querySelector('.content');
+
+		// Toggle nested tabs and update content dynamically
+		const sidebarLinks = document.querySelectorAll('.sidebar-link');
+		sidebarLinks.forEach(link => {
+			link.addEventListener('click', function() {
+				const parentLi = link.parentElement;
+				const isActive = parentLi.classList.toggle('active');
+				if (!isActive) updateContent('Default', 'default');
+			});
+		});
+
+		// Nested link click event to dynamically load content
+		const nested = document.querySelectorAll('.nested a');
+		nested.forEach(link => {
+			link.addEventListener('click', function(event) {
+				event.preventDefault();
+				const section = link.getAttribute('data-section');
+				const section_html = link.getAttribute('data-section-html');
+				updateContent(section, section_html);
+			});
+		});
+
+		// Dynamically load content based on section
+		function updateContent(section, section_html) {
+			const contentElement = document.getElementById('dynamic-content');
+			contentElement.innerHTML = '<p>Loading...</p>'; // Add loading message
+			fetch(`${section_html}`)
+				.then(response => response.text())
+				.then(html => {
+					contentElement.innerHTML = html;
+					loadExternalScripts(section);
+				})
+				.catch(error => {
+					console.error('Error loading content:', error);
+					contentElement.innerHTML = '<p>Error loading content. Please try again later.</p>';
+				});
+		}
+
+		// Dynamically load external scripts (JS files) for each section
+		function loadExternalScripts(section) {
+			if (!document.querySelector(`script[src="${section}.js"]`)) {
+				const script = document.createElement('script');
+				script.src = `${section}.js`;
+				document.body.appendChild(script);
+			}
+		}
+
+		// Toggle dropdown in nav menu on click
+		const navItems = document.querySelectorAll('nav ul li');
+		navItems.forEach(item => {
+			item.addEventListener('click', function(event) {
+				const dropdown = item.querySelector('ul');
+				if (dropdown) {
+					const isVisible = dropdown.style.display === 'block';
+					dropdown.style.display = isVisible ? 'none' : 'block';
+				}
+				event.stopPropagation(); // Prevent closing other dropdowns
+			});
+		});
+
+		// Close dropdowns if clicked outside
+		document.addEventListener('click', function(event) {
+			if (!event.target.closest('nav')) {
+				const dropdowns = document.querySelectorAll('nav ul li ul');
+				dropdowns.forEach(dropdown => dropdown.style.display = 'none');
+			}
+		});
+		</script>
+</body>
+</html>
