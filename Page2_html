@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+	<title>import</title>
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+
+	<style>
+			/* General reset */
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+
+		/* Body Styling */
+		body {
+			font-family: 'Roboto', sans-serif;
+			background: #F0F4F8;
+			color: #333;
+			padding: 10px 20px;
+		}
+
+		/* Container styling */
+		.container {
+			width: 100%;
+			max-width: 800px;
+			background-color: #ffffff;
+			border-radius: 8px;
+			padding: 20px;
+			box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+			margin-top: auto;
+		}
+
+		/* Header styling */
+		h3 {
+			font-size: 22px;
+			color: #34495E;
+			text-align: center;
+			margin-bottom: 20px;
+		}
+
+		/* Checkbox styling */
+		.checkboxes {
+			display: flex;
+			justify-content: space-evenly;
+			margin-bottom: 20px;
+		}
+
+		.checkboxes label {
+			font-size: 16px;
+			color: #34495E;
+		}
+
+		.checkboxes input[type="checkbox"] {
+			margin-right: 8px;
+		}
+
+
+        /* Textarea section */
+        .content-section {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        #content-textarea {
+            width: 100%;
+            max-width: 600px;
+            padding: 12px;
+            font-size: 14px;
+            border-radius: 5px;
+            border: 1px solid #BDC3C7;
+            resize: vertical;
+            background-color: #FFF;
+            transition: border-color 0.3s ease;
+            pointer-events: auto;
+            overflow-y: auto;
+        }
+
+        /* Watermark (Placeholder text styling) */
+        #content-textarea::placeholder {
+            color: #888;
+            font-style: italic;
+        }
+
+        /* Warning message */
+        .warning {
+            color: red;
+            font-size: 14px;
+            display: none; /* Hidden by default */
+        }
+		
+       /* Button styling */
+        .api-btn, .send-btn, .paste-btn, .clear-btn {
+            background-color: #3498db;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+            margin: 10px;
+            display: inline-block;
+            max-width: 250px;
+        }
+
+        .api-btn:hover, .send-btn:hover, .paste-btn:hover, .clear-btn:hover {
+            background-color: #2980b9;
+        }
+
+   /* Log Section */
+	 .log-section {
+		background-color: #2C3E50;
+		color: white;
+		padding: 20px;
+		border-radius: 8px;
+		max-height: 250px;
+		max-width: 600px;
+		overflow-y: auto;  /* Enables vertical scrolling when content overflows */
+		margin-top: 30px;
+		width:100px
+		position: relative;
+	}
+
+	#log-content {
+		white-space: pre-wrap;  /* Preserves whitespace and wraps long lines */
+		word-wrap: break-word;  /* Ensures words wrap to the next line if too long */
+		font-family: 'Courier New', Courier, monospace;
+		color: #ddd;
+		font-size: 14px;
+		max-height: 100%;  /* Makes sure the content area stays within the boundaries */
+		overflow: hidden;  /* Prevents extra scrollbars in the content area itself */
+	}
+
+		/* Email Input Section */
+		.email-input {
+			display: flex;
+			justify-content: center;
+			margin-top: 20px;
+		}
+
+		#email {
+			padding: 12px;
+			font-size: 14px;
+			width: 50%;
+			height:30%;
+			border: 1px solid #BDC3C7;
+			border-radius: 5px;
+			margin-right: 10px;
+			margin-top:12px;
+		}
+
+		#email:focus {
+			border-color: #3498db;
+			outline: none;
+		}
+
+	</style>
+</head>
+<body>
+    <div class="container" id="child-page-container">
+        <h3>REST API Call with Log Output and Send Email</h3>
+
+        <!-- Environment checkboxes -->
+        <div class="checkboxes">
+            <label><input type="checkbox" id="test-checkbox"> Test</label>
+            <label><input type="checkbox" id="stage-checkbox"> Stage</label>
+            <label><input type="checkbox" id="prod-checkbox"> Prod</label>
+        </div>
+
+        <!-- Textarea Section -->
+        <div class="content-section">
+            <textarea id="content-textarea" rows="10" cols="50" placeholder="FACILITY ID, CLINICIAN ID, NAME, EID" readonly></textarea>
+        </div>
+		
+		 <!-- Warning Message -->
+        <div class="warning" id="row-warning">MAX of 100 rows allowed</div>
+		
+		 <!-- Buttons Section -->
+        <div class="button-section" style="text-align: center;">
+            <button class="paste-btn" id="paste-btn">Paste</button>
+            <button class="clear-btn" id="clear-btn">Clear</button>
+			<button class="api-btn" id="api-call-btn">Make API Call</button>
+        </div>
+
+        <!-- Log Section -->
+       <center> <div class="log-section" id="log-section">
+            <pre id="log-content">Logs will appear here...</pre>
+        </div></center>
+
+        <!-- Email Input Section -->
+        <div class="email-input">
+            <input type="email" id="email" placeholder="Enter email to send log" required>
+            <button class="send-btn" id="send-log-btn">Send Log</button>
+        </div>
+    </div>
+
+    <script>
+		
+		const contentTextarea = document.getElementById('content-textarea');
+        const pasteButton = document.getElementById('paste-btn');
+        const clearButton = document.getElementById('clear-btn');
+        const warningMessage = document.getElementById('row-warning');
+		
+		//----------------------------------Module Check Boxes
+		
+		 // Get selected environments
+			function getSelectedEnvironments() {
+				const environments = [];
+				if (document.getElementById("test-checkbox").checked) environments.push('Test');
+				if (document.getElementById("stage-checkbox").checked) environments.push('Stage');
+				if (document.getElementById("prod-checkbox").checked) environments.push('Prod');
+				return environments;
+			}
+		
+		//----------------------------------Module Check Boxes
+
+		
+		
+		//----------------------------------Module text area
+		
+		
+			//----------------------------------Buttons
+			
+				// Function to paste in text area
+				pasteButton.addEventListener('click', function() {
+				navigator.clipboard.readText()
+					.then(text => {
+						contentTextarea.value = text; // Paste the copied content
+					})
+					.catch(err => {
+						console.error('Error pasting content: ', err);
+						logMessage("Error pasting content: "+ err, false);
+					});
+				});
+		
+				// Function to clear the textarea content
+				clearButton.addEventListener('click', function() {
+					contentTextarea.value = ''; // Clear the textarea
+					warningMessage.style.display = 'none'; // Hide the warning when cleared
+				});
+			
+			
+				 // Trigger the API call
+				document.getElementById("api-call-btn").addEventListener("click", function() {
+					const statusMessage = document.getElementById("status-message");
+					const content = document.getElementById("content-textarea").value;
+					const selectedEnvironments = getSelectedEnvironments();
+
+					if (selectedEnvironments.length === 0) {
+						alert("Please select at least one environment.");
+						logMessage("Please select at least one environment. ", false);
+						return;
+					}
+
+					// Clear previous status message and logs
+					statusMessage.style.display = "none";
+					statusMessage.textContent = '';
+					logMessage("Making API call...", true);
+
+					selectedEnvironments.forEach(env => {
+						makeApiCall(env, content);
+					});
+				});
+				
+			//----------------------------------Buttons
+		//----------------------------------Module text area
+				
+				
+				
+			//----------------------------------Text Area
+			
+				// Handle content input event to track rows
+				contentTextarea.addEventListener('input', function() {
+					const rowCount = contentTextarea.value.split('\n').length;
+					if (rowCount > 100) {
+						warningMessage.style.display = 'block'; // Show warning if more than 100 rows
+						logMessage("Max 100 rows allowed...", false);
+					} else {
+						warningMessage.style.display = 'none'; // Hide warning if row count is <= 100
+					}
+				});
+		
+		
+				// Keyboard event to prevent user typing and allow only paste (Ctrl+V)
+				document.addEventListener('keydown', function(event) {
+					// Ctrl + V (Paste)
+					if (event.ctrlKey && event.key === 'v') {
+						navigator.clipboard.readText()
+							.then(text => {
+								contentTextarea.value = text; // Paste the copied content
+							})
+							.catch(err => {
+								console.error('Error pasting content: ', err);
+								logMessage("Error pasting content: "+err, false);
+							});
+						event.preventDefault(); // Prevent default paste behavior
+					}
+
+					// Ctrl + A (Select All)
+					if (event.ctrlKey && event.key === 'a') {
+						contentTextarea.select(); // Select all text
+						event.preventDefault(); // Prevent default select-all behavior
+					}
+
+					// Delete (Clear the content)
+					if (event.key === 'Delete') {
+						contentTextarea.value = ''; // Clear the textarea
+						event.preventDefault(); // Prevent default delete behavior
+					}
+				});
+			//----------------------------------Text Area
+			
+			
+			
+		
+        // Function to log messages
+        function logMessage(message, isSuccess = true) {
+            const logContent = document.getElementById("log-content");
+            const logLine = document.createElement("div");
+            logLine.textContent = message;
+            logLine.style.color = isSuccess ? 'green' : 'red';
+            logContent.appendChild(logLine);
+            logContent.scrollTop = logContent.scrollHeight; // Scroll to the bottom
+        }
+		
+	
+
+        // Make the API call to the selected environment
+        function makeApiCall(environment, content) {
+            fetch(`/api/riayati/Install/ImportEID?env=${environment}`, {
+                method: "POST",
+                headers: { 'Content-Type': 'text/plain' },
+                body: content,
+            })
+            .then(response => response.text())
+            .then(data => {
+                logMessage(`API call to ${environment} successful: ${data}`, true);
+            })
+            .catch(error => {
+                logMessage(`API call to ${environment} failed: ${error.message}`, false);
+            });
+        }
+
+        // Send log via email
+        // document.getElementById("send-log-btn").addEventListener("click", function() {
+         // const email = document.getElementById("email").value;
+           //  const logs = document.getElementById("log-content").innerText;
+
+			// if (!email) {
+         // //        alert("Please enter a valid email address.");
+               //  return;
+          //   }
+
+            // Prepare email parameters
+           //  const emailParams = {
+              //   to_email: email,
+           //      message: logs,
+                // subject: "Log File from Developer Portal"
+            // };
+
+            // Send the email using EmailJS
+            // emailjs.send('your_service_id', 'your_template_id', emailParams)
+               //  .then(response => logMessage("Log sent to email successfully!", true))
+                // .catch(error => logMessage("Failed to send log email: " + error.text, false));
+        // });-->
+
+    </script>
+</body>
+</html>
