@@ -333,7 +333,7 @@
 			<!-- Content Section -->
 			<div class="content">
 				<div id="dynamic-content">
-					Add some developer related design here
+					<h2>Welcome to Riayati Developer Portal</h2>
 				</div>
 			</div>
 		</div>
@@ -350,7 +350,7 @@
 				const parentLi = link.parentElement;
 				const isActive = parentLi.classList.toggle('active');
 				const contentElement = document.getElementById('dynamic-content');			
-				if (!isActive) updateContent(contentElement, contentElement);
+				if (!isActive) contentElement.innerHTML = `<h2>Welcome to Riayati Developer Portal</h2>`
 			});
 		});
 
