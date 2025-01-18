@@ -348,8 +348,9 @@
 		sidebarLinks.forEach(link => {
 			link.addEventListener('click', function() {
 				const parentLi = link.parentElement;
-				const isActive = parentLi.classList.toggle('active');
-				if (!isActive) updateContent('Default', 'default');
+				const isActive = parentLi.classList.toggle('active
+				const contentElement = document.getElementById('dynamic-content');			
+				if (!isActive) updateContent(contentElement, contentElement);
 			});
 		});
 
