@@ -41,11 +41,11 @@ contentElement.innerHTML = '<p>Error loading content. Please try again later.</p
 
 // Dynamically load external scripts (JS files) for each section
 function loadExternalScripts(section) {
-if (!document.querySelector(`script[src="${section}.js"]`)) {
+//if (!document.querySelector(`script[src="${section}.js"]`)) {
 const script = document.createElement('script');
 script.src = `${section}.js`;
 document.body.appendChild(script);
-}
+//}
 }
 
 // Toggle dropdown in nav menu on click
