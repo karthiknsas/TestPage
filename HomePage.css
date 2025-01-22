@@ -1,119 +1,118 @@
-<style>
-	* {
-		margin: 0;
-		padding: 0;
-		box-sizing: border-box;
-	}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Ensures padding and borders are included in width/height */
+}
 
-	/* Body styling */
-	body {
-		font-family: 'Roboto', sans-serif;
-		display: flex;
-		flex-direction: column;
-		height: 100vh;
-		background: #F0F4F8;
-		overflow-x: hidden;
-	}
+/* Body and HTML styling */
+html, body {
+    font-family: 'Roboto', sans-serif;
+    height: 100%; /* Ensure full height */
+    overflow: hidden; /* Prevent unwanted scrollbars */
+}
 
-	/* Header Styling */
-	header {
-		background-color: #34495E;
-		color: #FFF;
-		padding: 20px;
-		text-align: center;
-		font-size: 30px;
-		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-	}
+body {
+    display: flex;
+    flex-direction: column;
+    background: #F0F4F8;
+}
 
-		/* Navigation Styling */
-	nav {
-		background-color: #1F2A40;
-		color: #FFF;
-		padding: 8px 0; /* Reduced padding */
-		text-align: center;
-		box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-		position: relative;
-		height: 20px; /* Reduced height */
-	}
-	
-	nav ul {
-		list-style: none;
-		display: flex;
-		justify-content: center;
-		padding-left: 0;
-		margin: 0;
-	}
-	
-	nav ul li {
-		margin: 0 30px; /* Reduced margin between items */
-		position: relative;
-	}
-	
-	nav ul li a {
-		color: #FFF;
-		text-decoration: none;
-		font-weight: 500;
-		padding: 2px 12px; /* Adjusted padding for reduced height */
-		border-radius: 4px;
-		transition: background-color 0.3s, transform 0.3s;
-		display: block;
-		font-size: 14px; /* Reduced font size */
-	}
-	
-	nav ul li a:hover,
-	nav ul li a:focus {
-		background-color: #3498db;
-		transform: translateY(-2px); /* Small upward hover effect */
-		outline: none;
-	}
-	
-	/* Dropdown menu styles */
-	nav ul li ul {
-		display: none;
-		position: absolute;
-		top: 100%;
-		left: 0;
-		background-color: #2C3E50;
-		min-width: 180px;
-		box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-		border-radius: 4px;
-		z-index: 10;
-	}
-	
-	nav ul li:hover ul {
-		display: block;
-	}
-	
-	nav ul li ul li {
-		padding: 6px 12px; /* Reduced padding for dropdown items */
-		text-align: left;
-	}
-	
-	nav ul li ul li a {
-		color: #FFF;
-		padding: 6px 12px;
-		text-decoration: none;
-		font-weight: 400;
-		display: block;
-		font-size: 14px; /* Reduced font size for dropdown items */
-	}
-	
-	nav ul li ul li a:hover,
-	nav ul li ul li a:focus {
-		background-color: #1ABC9C;
-	}
+/* Header Styling */
+header {
+    background-color: #34495E;
+    color: #FFF;
+    padding: 10px; /* Adjusted padding for header */
+    text-align: center;
+    font-size: 24px; /* Reduced font size */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
 
-	/* Main content container */
-	.main-container {
-		display: flex;
-		flex-grow: 1;
-		flex-shrink: 0;
-		overflow: hidden;
-		transition: all 0.3s ease-in-out;
-	}
+/* Navigation Styling */
+nav {
+    background-color: #1F2A40;
+    color: #FFF;
+    padding: 8px 0; /* Reduced padding */
+    text-align: center;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+    height: 40px; /* Reduced height */
+}
 
-	/* Sidebar */
-	.sidebar {
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    padding-left: 0;
+    margin: 0;
+}
+
+nav ul li {
+    margin: 0 15px; /* Reduced margin between items */
+    position: relative;
+}
+
+nav ul li a {
+    color: #FFF;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 6px 12px; /* Adjusted padding */
+    border-radius: 4px;
+    transition: background-color 0.3s, transform 0.3s;
+    display: block;
+    font-size: 14px;
+}
+
+nav ul li a:hover,
+nav ul li a:focus {
+    background-color: #3498db;
+    transform: translateY(-2px);
+    outline: none;
+}
+
+/* Dropdown menu styles */
+nav ul li ul {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #2C3E50;
+    min-width: 180px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    z-index: 10;
+}
+
+nav ul li:hover ul {
+    display: block;
+}
+
+nav ul li ul li {
+    padding: 6px 12px;
+}
+
+nav ul li ul li a {
+    color: #FFF;
+    padding: 6px 12px;
+    font-size: 14px;
+}
+
+nav ul li ul li a:hover,
+nav ul li ul li a:focus {
+    background-color: #1ABC9C;
+}
+
+/* Main content container */
+.main-container {
+    display: flex;
+    flex-grow: 1;
+    flex-shrink: 0;
+    overflow: hidden;
+    transition: all 0.3s ease-in-out;
+    height: 100%; /* Ensure it takes full height of the available space */
+}
+
+/* Sidebar */
+.sidebar {
 		width: 260px;
 		background-color: #2C3E50;
 		color: white;
@@ -203,65 +202,34 @@
 		margin-left: 70px; /* Add left margin when sidebar is collapsed */
 	}
 
-	.content h2 {
-		color: #2C3E50;
-		margin-bottom: 20px;
-	}
+/* Responsive design */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 220px;
+    }
 
-	.content p {
-		color: #7F8C8D;
-		font-size: 16px;
-		line-height: 1.6;
-	}
+    .sidebar.collapsed {
+        width: 70px;
+    }
 
-	.log-container {
-		margin-top: 30px;
-		background-color: #2C3E50;
-		color: #FFF;
-		padding: 20px;
-		border-radius: 8px;
-		max-height: 200px;
-		overflow-y: auto;
-		box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-	}
+    .main-container {
+        flex-direction: column;
+    }
 
-	.log-container pre {
-		white-space: pre-wrap;
-		word-wrap: break-word;
-		font-family: 'Courier New', Courier, monospace;
-		color: #ddd;
-		font-size: 14px;
-	}
+    .content {
+        padding: 15px;
+        margin-left: 0;
+    }
 
-	/* Responsive design */
-	@media (max-width: 768px) {
-		.sidebar {
-			width: 220px;
-		}
+    .sidebar .toggle-btn {
+        left: 180px;
+    }
 
-		.sidebar.collapsed {
-			width: 70px; /* Ensure it's not fully collapsed on smaller screens */
-		}
+    nav ul {
+        flex-direction: column;
+    }
 
-		.main-container {
-			flex-direction: column;
-		}
-
-		.content {
-			padding: 15px;
-			margin-left: 0;
-		}
-
-		.sidebar .toggle-btn {
-			left: 180px; /* Button alignment */
-		}
-
-		nav ul {
-			flex-direction: column;
-		}
-
-		nav ul li {
-			margin: 10px 0;
-		}
-	}
-</style>
+    nav ul li {
+        margin: 10px 0;
+    }
+}
