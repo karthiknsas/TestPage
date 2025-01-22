@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Child Page - Folder and File Operations</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Component 1: Folder selection and creation -->
+        <div class="component" id="component1">
+            <h2>Folder Operations</h2>
+            <label for="folderSelect">Select Folder:</label>
+            <select id="folderSelect">
+                <option value="">Select a folder</option>
+            </select>
+            <button id="createFolderBtn">Create New Folder</button>
+            <input type="text" id="newFolderName" placeholder="Enter new folder name" style="display:none;" />
+            <button id="submitFolderName" style="display:none;">Submit Folder</button>
+        </div>
+
+        <!-- Component 2: File operations -->
+        <div class="component" id="component2">
+            <h2>File Operations</h2>
+            <label for="operationSelect">Choose an operation:</label>
+            <select id="operationSelect">
+                <option value="">Select operation</option>
+                <option value="copy">Copy Content to Web Page</option>
+                <option value="upload">Upload File</option>
+            </select>
+
+            <div id="fileOperationSection" style="display:none;">
+                <input type="file" id="fileInput" />
+                <textarea id="fileContent" placeholder="Content will appear here..." style="display:none;"></textarea>
+                <button id="executeOperation">Execute</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
