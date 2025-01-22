@@ -19,16 +19,15 @@ nested.forEach(link => {
 link.addEventListener('click', function(event) {
 event.preventDefault();
 const section = link.getAttribute('data-section');
-const section_html = link.getAttribute('data-section-html');
-updateContent(section, section_html);
+updateContent(section);
 });
 });
 
 // Dynamically load content based on section
-function updateContent(section, section_html) {
+function updateContent(section) {
 const contentElement = document.getElementById('dynamic-content');
 contentElement.innerHTML = '<p>Loading...</p>'; // Add loading message
-fetch(`${section_html}`)
+fetch(`${section}.html`)
 .then(response => response.text())
 .then(html => {
 contentElement.innerHTML = html;
