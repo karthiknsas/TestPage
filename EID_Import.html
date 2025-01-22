@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+	<title>import</title>
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container" id="child-page-container">
+        <h3>REST API Call with Log Output and Send Email</h3>
+
+        <!-- Environment checkboxes -->
+        <div class="checkboxes">
+            <label><input type="checkbox" id="test-checkbox"> Test</label>
+            <label><input type="checkbox" id="stage-checkbox"> Stage</label>
+            <label><input type="checkbox" id="prod-checkbox"> Prod</label>
+        </div>
+
+        <!-- Textarea Section -->
+        <div class="content-section">
+            <textarea id="content-textarea" rows="10" cols="50" placeholder="FACILITY ID, CLINICIAN ID, NAME, EID" readonly></textarea>
+        </div>
+		
+		 <!-- Warning Message -->
+        <div class="warning" id="row-warning">MAX of 100 rows allowed</div>
+		
+		 <!-- Buttons Section -->
+        <div class="button-section" style="text-align: center;">
+            <button class="paste-btn" id="paste-btn">Paste</button>
+            <button class="clear-btn" id="clear-btn">Clear</button>
+			<button class="api-btn" id="api-call-btn">Make API Call</button>
+        </div>
+
+        <!-- Log Section -->
+       <center> <div class="log-section" id="log-section">
+            <pre id="log-content">Logs will appear here...</pre>
+        </div></center>
+
+        <!-- Email Input Section -->
+        <div class="email-input">
+            <input type="email" id="email" placeholder="Enter email to send log" required>
+            <button class="send-btn" id="send-log-btn">Send Log</button>
+        </div>
+    </div>
+</body>
+</html>
