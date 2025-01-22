@@ -1,0 +1,149 @@
+	/* General reset */
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+
+		/* Body Styling */
+		body {
+			font-family: 'Roboto', sans-serif;
+			background: #F0F4F8;
+			color: #333;
+
+		}
+
+		/* Container styling */
+		.container {
+			width: 100%;
+			max-width: 800px;
+			background-color: #ffffff;
+			border-radius: 8px;
+			padding: 20px;
+			box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+		}
+
+		/* Header styling */
+		h3 {
+			font-size: 22px;
+			color: #34495E;
+			text-align: center;
+			margin-bottom: 20px;
+		}
+
+		/* Checkbox styling */
+		.checkboxes {
+			display: flex;
+			justify-content: space-evenly;
+			margin-bottom: 20px;
+		}
+
+		.checkboxes label {
+			font-size: 16px;
+			color: #34495E;
+		}
+
+		.checkboxes input[type="checkbox"] {
+			margin-right: 8px;
+		}
+
+
+        /* Textarea section */
+        .content-section {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        #content-textarea {
+            width: 100%;
+            max-width: 600px;
+            padding: 12px;
+            font-size: 14px;
+            border-radius: 5px;
+            border: 1px solid #BDC3C7;
+            resize: vertical;
+            background-color: #FFF;
+            transition: border-color 0.3s ease;
+            pointer-events: auto;
+            overflow-y: auto;
+        }
+
+        /* Watermark (Placeholder text styling) */
+        #content-textarea::placeholder {
+            color: #888;
+            font-style: italic;
+        }
+
+        /* Warning message */
+        .warning {
+            color: red;
+            font-size: 14px;
+            display: none; /* Hidden by default */
+        }
+		
+       /* Button styling */
+        .api-btn, .send-btn, .paste-btn, .clear-btn {
+            background-color: #3498db;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+            margin: 10px;
+            display: inline-block;
+            max-width: 250px;
+        }
+
+        .api-btn:hover, .send-btn:hover, .paste-btn:hover, .clear-btn:hover {
+            background-color: #2980b9;
+        }
+
+   /* Log Section */
+	 .log-section {
+		background-color: #2C3E50;
+		color: white;
+		padding: 20px;
+		border-radius: 8px;
+		max-height: 250px;
+		max-width: 600px;
+		overflow-y: auto;  /* Enables vertical scrolling when content overflows */
+		margin-top: 30px;
+		width:100px
+		position: relative;
+	}
+
+	#log-content {
+		white-space: pre-wrap;  /* Preserves whitespace and wraps long lines */
+		word-wrap: break-word;  /* Ensures words wrap to the next line if too long */
+		font-family: 'Courier New', Courier, monospace;
+		color: #ddd;
+		font-size: 14px;
+		max-height: 100%;  /* Makes sure the content area stays within the boundaries */
+		overflow: hidden;  /* Prevents extra scrollbars in the content area itself */
+	}
+
+		/* Email Input Section */
+		.email-input {
+			display: flex;
+			justify-content: center;
+			margin-top: 20px;
+		}
+
+		#email {
+			padding: 12px;
+			font-size: 14px;
+			width: 50%;
+			height:30%;
+			border: 1px solid #BDC3C7;
+			border-radius: 5px;
+			margin-right: 10px;
+			margin-top:12px;
+		}
+
+		#email:focus {
+			border-color: #3498db;
+			outline: none;
+		}
