@@ -1,269 +1,267 @@
 <style>
-		* {
-			margin: 0;
-			padding: 0;
-			box-sizing: border-box;
-		}
+	* {
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+	}
 
-		/* Body styling */
-		body {
-			font-family: 'Roboto', sans-serif;
-			display: flex;
-			flex-direction: column;
-			height: 100vh;
-			background: #F0F4F8;
-			overflow-x: hidden;
-		}
+	/* Body styling */
+	body {
+		font-family: 'Roboto', sans-serif;
+		display: flex;
+		flex-direction: column;
+		height: 100vh;
+		background: #F0F4F8;
+		overflow-x: hidden;
+	}
 
-		/* Header Styling */
-		header {
-			background-color: #34495E;
-			color: #FFF;
-			padding: 20px;
-			text-align: center;
-			font-size: 30px;
-			box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-		}
+	/* Header Styling */
+	header {
+		background-color: #34495E;
+		color: #FFF;
+		padding: 20px;
+		text-align: center;
+		font-size: 30px;
+		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+	}
 
 		/* Navigation Styling */
-		/* Navigation Styling */
-		nav {
-		    background-color: #1F2A40;
-		    color: #FFF;
-		    padding: 8px 0; /* Adjust padding to fit within the 40px height */
-		    text-align: center;
-		    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-		    position: relative;
-		    height: 40px; 
-		    box-sizing: border-box; 
-		    display: flex; /* Use flexbox to center content */
-		    align-items: center; /* Vertically center the nav content */
-		}
-		
-		nav ul {
-		    list-style: none;
-		    display: flex;
-		    justify-content: center;
-		    padding-left: 0;
-		    margin: 0;
-		}
-		
-		nav ul li {
-		    margin: 0 20px;
-		    position: relative;
-		}
-		
-		nav ul li a {
-		    color: #FFF;
-		    text-decoration: none;
-		    font-weight: 500;
-		    padding: 6px 12px; /* Adjust padding for better fit */
-		    border-radius: 4px;
-		    transition: background-color 0.3s, transform 0.3s;
-		    display: block;
-		}
-		
-		nav ul li a:hover,
-		nav ul li a:focus {
-		    background-color: #3498db;
-		    transform: translateY(-2px); /* Small upward hover effect */
-		    outline: none;
-		}
-		
-		/* Dropdown menu styles */
-		nav ul li ul {
-		    display: none;
-		    position: absolute;
-		    top: 100%;
-		    left: 0;
-		    background-color: #2C3E50;
-		    min-width: 180px;
-		    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-		    border-radius: 4px;
-		    z-index: 10;
-		}
-		
-		nav ul li:hover ul {
-		    display: block;
-		}
-		
-		nav ul li ul li {
-		    padding: 10px;
-		    text-align: left;
-		}
-		
-		nav ul li ul li a {
-		    color: #FFF;
-		    padding: 8px 16px;
-		    text-decoration: none;
-		    font-weight: 400;
-		    display: block;
-		}
-		
-		nav ul li ul li a:hover,
-		nav ul li ul li a:focus {
-		    background-color: #1ABC9C;
-		}
+	nav {
+		background-color: #1F2A40;
+		color: #FFF;
+		padding: 8px 0; /* Reduced padding */
+		text-align: center;
+		box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+		position: relative;
+		height: 20px; /* Reduced height */
+	}
+	
+	nav ul {
+		list-style: none;
+		display: flex;
+		justify-content: center;
+		padding-left: 0;
+		margin: 0;
+	}
+	
+	nav ul li {
+		margin: 0 30px; /* Reduced margin between items */
+		position: relative;
+	}
+	
+	nav ul li a {
+		color: #FFF;
+		text-decoration: none;
+		font-weight: 500;
+		padding: 2px 12px; /* Adjusted padding for reduced height */
+		border-radius: 4px;
+		transition: background-color 0.3s, transform 0.3s;
+		display: block;
+		font-size: 14px; /* Reduced font size */
+	}
+	
+	nav ul li a:hover,
+	nav ul li a:focus {
+		background-color: #3498db;
+		transform: translateY(-2px); /* Small upward hover effect */
+		outline: none;
+	}
+	
+	/* Dropdown menu styles */
+	nav ul li ul {
+		display: none;
+		position: absolute;
+		top: 100%;
+		left: 0;
+		background-color: #2C3E50;
+		min-width: 180px;
+		box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+		border-radius: 4px;
+		z-index: 10;
+	}
+	
+	nav ul li:hover ul {
+		display: block;
+	}
+	
+	nav ul li ul li {
+		padding: 6px 12px; /* Reduced padding for dropdown items */
+		text-align: left;
+	}
+	
+	nav ul li ul li a {
+		color: #FFF;
+		padding: 6px 12px;
+		text-decoration: none;
+		font-weight: 400;
+		display: block;
+		font-size: 14px; /* Reduced font size for dropdown items */
+	}
+	
+	nav ul li ul li a:hover,
+	nav ul li ul li a:focus {
+		background-color: #1ABC9C;
+	}
 
-		/* Main content container */
-		.main-container {
-			display: flex;
-			flex-grow: 1;
-			flex-shrink: 0;
-			overflow: hidden;
-			transition: all 0.3s ease-in-out;
-		}
+	/* Main content container */
+	.main-container {
+		display: flex;
+		flex-grow: 1;
+		flex-shrink: 0;
+		overflow: hidden;
+		transition: all 0.3s ease-in-out;
+	}
 
-		/* Sidebar */
+	/* Sidebar */
+	.sidebar {
+		width: 260px;
+		background-color: #2C3E50;
+		color: white;
+		position: relative;
+		transition: width 0.3s ease-in-out;
+		z-index: 1; /* Ensure the sidebar stays behind content */
+	}
+
+	.sidebar.collapsed {
+		width: 70px; /* Reduced width when collapsed */
+		z-index: 0; /* Sidebar behind the content when collapsed */
+	}
+
+	.sidebar ul {
+		list-style: none;
+		padding-left: 0;
+	}
+
+	.sidebar ul li {
+		margin: 15px 0;
+	}
+
+	.sidebar ul li a {
+		color: white;
+		text-decoration: none;
+		font-weight: 500;
+		display: block;
+		padding: 12px;
+		border-radius: 5px;
+		transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+	}
+
+	.sidebar ul li a:hover {
+		background-color: #1ABC9C;
+		transform: translateX(5px); /* Slightly push the link to the right */
+	}
+
+	.sidebar ul li .nested {
+		display: none;
+		padding-left: 20px;
+		margin-top: 10px;
+	}
+
+	.sidebar ul li.active .nested {
+		display: block;
+	}
+
+	/* Sidebar toggle button */
+	.sidebar .toggle-btn {
+		position: absolute;
+		top: 20px;
+		left: 250px; /* Adjusted position for the button */
+		background-color: #34495E;
+		color: white;
+		border: none;
+		padding: 10px;
+		cursor: pointer;
+		font-size: 18px;
+		border-radius: 50%;
+		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+		transition: left 0.3s ease;
+		z-index: 3; /* Make sure the toggle button is above all content */
+	}
+
+	.sidebar .toggle-btn:hover {
+		background-color: #3498db;
+	}
+
+	.sidebar .toggle-btn:focus {
+		outline: none;
+	}
+
+	/* Content */
+	.content {
+		flex-grow: 1;
+		padding: 20px;
+		overflow-y: auto;
+		background-color: #FFF;
+		box-shadow: inset 0 4px 15px rgba(0, 0, 0, 0.1);
+		border-radius: 8px;
+		transition: margin-left 0.3s ease-in-out;
+		z-index: 2; /* Ensure the content stays above the sidebar */
+	}
+
+	/* Adjust content padding when sidebar is collapsed */
+	.sidebar.collapsed + .content {
+		margin-left: 70px; /* Add left margin when sidebar is collapsed */
+	}
+
+	.content h2 {
+		color: #2C3E50;
+		margin-bottom: 20px;
+	}
+
+	.content p {
+		color: #7F8C8D;
+		font-size: 16px;
+		line-height: 1.6;
+	}
+
+	.log-container {
+		margin-top: 30px;
+		background-color: #2C3E50;
+		color: #FFF;
+		padding: 20px;
+		border-radius: 8px;
+		max-height: 200px;
+		overflow-y: auto;
+		box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+	}
+
+	.log-container pre {
+		white-space: pre-wrap;
+		word-wrap: break-word;
+		font-family: 'Courier New', Courier, monospace;
+		color: #ddd;
+		font-size: 14px;
+	}
+
+	/* Responsive design */
+	@media (max-width: 768px) {
 		.sidebar {
-			width: 260px;
-			background-color: #2C3E50;
-			color: white;
-			position: relative;
-			transition: width 0.3s ease-in-out;
-			z-index: 1; /* Ensure the sidebar stays behind content */
+			width: 220px;
 		}
 
 		.sidebar.collapsed {
-			width: 70px; /* Reduced width when collapsed */
-			z-index: 0; /* Sidebar behind the content when collapsed */
+			width: 70px; /* Ensure it's not fully collapsed on smaller screens */
 		}
 
-		.sidebar ul {
-			list-style: none;
-			padding-left: 0;
+		.main-container {
+			flex-direction: column;
 		}
 
-		.sidebar ul li {
-			margin: 15px 0;
-		}
-
-		.sidebar ul li a {
-			color: white;
-			text-decoration: none;
-			font-weight: 500;
-			display: block;
-			padding: 12px;
-			border-radius: 5px;
-			transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
-		}
-
-		.sidebar ul li a:hover {
-			background-color: #1ABC9C;
-			transform: translateX(5px); /* Slightly push the link to the right */
-		}
-
-		.sidebar ul li .nested {
-			display: none;
-			padding-left: 20px;
-			margin-top: 10px;
-		}
-
-		.sidebar ul li.active .nested {
-			display: block;
-		}
-
-		/* Sidebar toggle button */
-		.sidebar .toggle-btn {
-			position: absolute;
-			top: 20px;
-			left: 250px; /* Adjusted position for the button */
-			background-color: #34495E;
-			color: white;
-			border: none;
-			padding: 10px;
-			cursor: pointer;
-			font-size: 18px;
-			border-radius: 50%;
-			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-			transition: left 0.3s ease;
-			z-index: 3; /* Make sure the toggle button is above all content */
-		}
-
-		.sidebar .toggle-btn:hover {
-			background-color: #3498db;
-		}
-
-		.sidebar .toggle-btn:focus {
-			outline: none;
-		}
-
-		/* Content */
 		.content {
-			flex-grow: 1;
-			padding: 20px;
-			overflow-y: auto;
-			background-color: #FFF;
-			box-shadow: inset 0 4px 15px rgba(0, 0, 0, 0.1);
-			border-radius: 8px;
-			transition: margin-left 0.3s ease-in-out;
-			z-index: 2; /* Ensure the content stays above the sidebar */
+			padding: 15px;
+			margin-left: 0;
 		}
 
-		/* Adjust content padding when sidebar is collapsed */
-		.sidebar.collapsed + .content {
-			margin-left: 70px; /* Add left margin when sidebar is collapsed */
+		.sidebar .toggle-btn {
+			left: 180px; /* Button alignment */
 		}
 
-		.content h2 {
-			color: #2C3E50;
-			margin-bottom: 20px;
+		nav ul {
+			flex-direction: column;
 		}
 
-		.content p {
-			color: #7F8C8D;
-			font-size: 16px;
-			line-height: 1.6;
+		nav ul li {
+			margin: 10px 0;
 		}
-
-		.log-container {
-			margin-top: 30px;
-			background-color: #2C3E50;
-			color: #FFF;
-			padding: 20px;
-			border-radius: 8px;
-			max-height: 200px;
-			overflow-y: auto;
-			box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-		}
-
-		.log-container pre {
-			white-space: pre-wrap;
-			word-wrap: break-word;
-			font-family: 'Courier New', Courier, monospace;
-			color: #ddd;
-			font-size: 14px;
-		}
-
-		/* Responsive design */
-		@media (max-width: 768px) {
-			.sidebar {
-				width: 220px;
-			}
-
-			.sidebar.collapsed {
-				width: 70px; /* Ensure it's not fully collapsed on smaller screens */
-			}
-
-			.main-container {
-				flex-direction: column;
-			}
-
-			.content {
-				padding: 15px;
-				margin-left: 0;
-			}
-
-			.sidebar .toggle-btn {
-				left: 180px; /* Button alignment */
-			}
-
-			nav ul {
-				flex-direction: column;
-			}
-
-			nav ul li {
-				margin: 10px 0;
-			}
-		}
-	</style>
+	}
+</style>
