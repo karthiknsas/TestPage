@@ -1,43 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Child Page - Folder and File Operations</title>
-    <link rel="stylesheet" href="X509Cert_Upload.css">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+	<title>import</title>
+	<link rel="stylesheet" href="X509Cert_Upload.html.css">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
 </head>
+
 <body>
-    <div class="container">
-        <!-- Component 1: Folder selection and creation -->
-        <div class="component" id="component1">
-            <h2>Folder Operations</h2>
-            <label for="folderSelect">Select Folder:</label>
-            <select id="folderSelect">
-                <option value="">Select a folder</option>
-            </select>
-            <button id="createFolderBtn">Create New Folder</button>
-            <input type="text" id="newFolderName" placeholder="Enter new folder name" style="display:none;" />
-            <button id="submitFolderName" style="display:none;">Submit Folder</button>
-        </div>
 
-        <!-- Component 2: File operations -->
-        <div class="component" id="component2">
-            <h2>File Operations</h2>
-            <label for="operationSelect">Choose an operation:</label>
-            <select id="operationSelect">
-                <option value="">Select operation</option>
-                <option value="copy">Copy Content to Web Page</option>
-                <option value="upload">Upload File</option>
-            </select>
+  <div class="main-container">
+    <!-- Left container for form -->
+    <div class="form-container">
+      <h1>File Upload X.509 Certificate</h1>
 
-            <div id="fileOperationSection" style="display:none;">
-                <input type="file" id="fileInput" />
-                <textarea id="fileContent" placeholder="Content will appear here..." style="display:none;"></textarea>
-                <button id="executeOperation">Execute</button>
-            </div>
+      <!-- Environment checkboxes -->
+      <div class="checkboxes">
+        <label><input type="checkbox" id="test-checkbox"> Test</label>
+        <label><input type="checkbox" id="stage-checkbox"> Stage</label>
+        <label><input type="checkbox" id="prod-checkbox"> Prod</label>
+      </div>
+
+      <!-- File upload options -->
+      <div class="upload-options">
+        <label for="file-upload" class="file-upload-btn">Upload File</label>
+        <input type="file" id="file-upload">
+      </div>
+
+      <!-- Text area for content -->
+      <div class="text-area-container">
+        <label for="text-input">Or copy your content here:</label>
+        <textarea id="text-input" placeholder="Paste your file content here"></textarea>
+      </div>
+
+      <!-- Folder selection -->
+      <div class="folder-options">
+        <label for="folder-select">Select or Create Folder:</label>
+        <select id="folder-select">
+          <option value="" selected disabled>Select Folder</option> <!-- Default empty option -->
+          <option value="existing">Select Existing Folder</option>
+          <option value="create-new">Create New Folder</option>
+        </select>
+
+        <div id="new-folder-container" style="display:none;">
+          <input type="text" id="new-folder-name" placeholder="Enter folder name" />
         </div>
+      </div>
+
+      <!-- Submit Button -->
+      <button class="submit-btn" id="submit-btn-id">Submit</button>
+      <p id="status-message"></p>
     </div>
 
-    <script src="X509Cert_Upload.js"></script>
+    <!-- Right container for logs -->
+    <div class="log-container">
+      <h3>Logs</h3>
+      <pre id="log-content">Logs will appear here...</pre>
+    </div>
+  </div>
 </body>
 </html>
