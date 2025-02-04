@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+	<title>import</title>
+	<link rel="stylesheet" href="EID_Import.css">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container" id="child-page-container">
+        <div class="checkboxes">
+            <label><input type="checkbox" id="test-checkbox"> Test</label>
+            <label><input type="checkbox" id="stage-checkbox"> Stage</label>
+            <label><input type="checkbox" id="prod-checkbox"> Prod</label>
+        </div>
+        <div class="content-section">
+            <textarea id="content-textarea" rows="10" cols="50" placeholder="NameSpace,FacilityName,InterfaceName,AA,Port,InactivitytimeOut,OID,Comment" readonly></textarea>
+        </div>
+        <div class="warning" id="row-warning">MAX of 10 rows allowed</div>
+      
+        <div class="button-section" style="text-align: center;">
+            <button class="paste-btn" id="paste-btn">Paste</button>
+            <button class="clear-btn" id="clear-btn">Clear</button>
+			<button class="api-btn" id="api-call-btn">Make API Call</button>
+        </div>
+      
+       <center> <div class="log-section" id="log-section">
+            <pre id="log-content">Logs will appear here...</pre>
+        </div></center>
+
+        <!-- Email Input Section -->
+        <div class="email-input">
+            <input type="email" id="email" placeholder="Enter email to send log" required>
+        </div>
+    </div>
+<script src="EID_Import.js"></script>
+</body>
+</html>
